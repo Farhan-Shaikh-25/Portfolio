@@ -2,6 +2,10 @@
 
 A minimal, dark editorial portfolio built with React. Single-file component, no external UI libraries.
 
+## Live
+
+```https://portfolio-farhan-25.vercel.app/```
+
 ## Stack
 
 - React (functional components + hooks)
