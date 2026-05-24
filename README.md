@@ -1,16 +1,27 @@
-# React + Vite
+# Mohammed Farhan Shaikh — Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal, dark editorial portfolio built with React. Single-file component, no external UI libraries.
 
-Currently, two official plugins are available:
+## Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React (functional components + hooks)
+- Google Fonts — DM Serif Display & DM Mono
+- Vanilla CSS via injected `<style>` tag
 
-## React Compiler
+## Updating Content
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+All content lives at the top of `App.jsx` — no need to touch component code.
 
-## Expanding the ESLint configuration
+```js
+const SKILLS = { ... };   // add/remove skill categories
+const PROJECTS = [ ... ]; // add/remove projects
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Structure
+
+```
+src/
+└── App.jsx   # entire portfolio — data, styles, and components
+```
+
+Four sections: **About · Skills · Projects · Contact**
