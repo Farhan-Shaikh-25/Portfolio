@@ -3,20 +3,22 @@ import { useState, useEffect, useRef } from "react";
 const NAV_LINKS = ["About", "Skills", "Projects", "Contact"];
 
 const SKILLS = {
-  "Frontend": ["ReactJS", "Flutter", "HTML5", "CSS3"],
+  "Frontend": ["ReactJS", "Next.js", "Flutter", "HTML5", "CSS3"],
   "Backend": ["Node.js", "Express.js", "REST APIs"],
   "Data & ML": ["Python", "Pandas", "NumPy", "Scikit-learn", "EDA"],
-  "Databases": ["MongoDB", "SQL", "Firebase"],
-  "Tools": ["Git", "GitHub", "Postman", "JWT", "Bcrypt"],
+  "Databases": ["MongoDB", "Firebase", "SQLite", "SQL"],
+  "Tools": ["Git", "GitHub", "Postman", "JWT", "Bcrypt", "Resend"],
 };
 
 const PROJECTS = [
   {
     name: "BreakBite",
     tag: "Full-Stack · Live",
-    stack: ["Flutter", "Firebase", "Node.js", "MongoDB"],
+    stack: ["Flutter", "Firebase", "FCM", "Node.js", "MongoDB"],
     desc: "End-to-end canteen ordering platform with real-time order tracking and push notifications via FCM. Serves real campus users.",
     accent: "#D4A843",
+    repo: "https://github.com/Farhan-Shaikh-25/BreakBite",
+    live: "https://breakbite-c33c3.web.app",
   },
   {
     name: "KeepTask",
@@ -24,13 +26,23 @@ const PROJECTS = [
     stack: ["React", "Node.js", "JWT", "MongoDB"],
     desc: "Secure task management app with access/refresh token auth strategy, bcrypt hashing, and full CRUD. Deployed on Netlify.",
     accent: "#D4A843",
+    repos: [
+      { label: "Frontend", href: "https://github.com/Farhan-Shaikh-25/TodoFrontend" },
+      { label: "Backend", href: "https://github.com/Farhan-Shaikh-25/TodoBackend" },
+    ],
+    live: "https://keeptask.netlify.app",
   },
   {
-    name: "EDA — Multi-Domain",
-    tag: "Data Science",
-    stack: ["Python", "Pandas", "Matplotlib", "Seaborn"],
-    desc: "End-to-end exploratory analysis across Uber, Airbnb, Superstore & Google Play datasets — surfacing patterns through heatmaps, distributions, and correlation matrices.",
+    name: "Teacher Audit",
+    tag: "Flutter · Next.js · Live",
+    stack: ["Flutter", "Dart", "SQLite", "Google Drive API", "Next.js 14", "Tailwind CSS", "Resend"],
+    desc: "Time tracking app for teachers with offline-first SQLite storage and cross-device sync via Google Drive. Includes a polished Next.js landing page with a Resend-powered contact form, deployed on Vercel.",
     accent: "#D4A843",
+    repos: [
+      { label: "App", href: "https://github.com/Farhan-Shaikh-25/TeacherAudit" },
+      { label: "Landing", href: "https://github.com/Farhan-Shaikh-25/TeacherAuditLandingPage" },
+    ],
+    live: "https://teacher-audit.vercel.app",
   },
   {
     name: "Zaid Tailoring",
@@ -38,6 +50,7 @@ const PROJECTS = [
     stack: ["HTML5", "CSS3", "JavaScript"],
     desc: "Production business website for a UAE-based client. Fully responsive with animated sections — designed, built, and deployed solo.",
     accent: "#D4A843",
+    live: "https://zaidtailoring.netlify.app",
   },
 ];
 
@@ -305,8 +318,30 @@ export default function Portfolio() {
                   <span className="mono" style={{ fontSize: 9, color: "#444", letterSpacing: "0.12em", textTransform: "uppercase", paddingTop: 4 }}>{p.tag}</span>
                 </div>
                 <p className="mono" style={{ fontSize: 12, lineHeight: 1.85, color: "#555", marginBottom: 28 }}>{p.desc}</p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {p.stack.map((s) => <span key={s} className="stack-pill">{s}</span>)}
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                    {p.stack.map((s) => <span key={s} className="stack-pill">{s}</span>)}
+                  </div>
+                  <div style={{ display: "flex", gap: 12, marginLeft: 16, flexShrink: 0 }}>
+                    {p.repo && (
+                      <a href={p.repo} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "#444", letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.2s" }}
+                        onMouseEnter={e => e.target.style.color = "#D4A843"} onMouseLeave={e => e.target.style.color = "#444"}>
+                        Repo ↗
+                      </a>
+                    )}
+                    {p.repos && p.repos.map((r) => (
+                      <a key={r.label} href={r.href} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "#444", letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.2s" }}
+                        onMouseEnter={e => e.target.style.color = "#D4A843"} onMouseLeave={e => e.target.style.color = "#444"}>
+                        {r.label} ↗
+                      </a>
+                    ))}
+                    {p.live && (
+                      <a href={p.live} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "#D4A843", letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", opacity: 0.8, transition: "opacity 0.2s" }}
+                        onMouseEnter={e => e.target.style.opacity = "1"} onMouseLeave={e => e.target.style.opacity = "0.8"}>
+                        Live ↗
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
             </FadeIn>
