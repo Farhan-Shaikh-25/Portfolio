@@ -140,22 +140,21 @@ export default function Portfolio() {
         ::selection { background: #D4A843; color: #0C0C0C; }
         ::-webkit-scrollbar { width: 4px; } ::-webkit-scrollbar-track { background: #111; } ::-webkit-scrollbar-thumb { background: #D4A843; border-radius: 2px; }
 
-        .nav-link { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: #666; cursor: pointer; transition: color 0.25s; background: none; border: none; padding: 0; }
+        .nav-link { font-family: 'DM Mono', monospace; font-size: 11px; font-weight: 400; letter-spacing: 0.12em; text-transform: uppercase; color: #C2C2C2; cursor: pointer; transition: color 0.25s; background: none; border: none; padding: 0; }
         .nav-link:hover, .nav-link.active { color: #D4A843; }
 
-        .skill-tag { font-family: 'DM Mono', monospace; font-size: 11px; border: 1px solid #222; padding: 6px 14px; border-radius: 2px; color: #888; transition: border-color 0.2s, color 0.2s; display: inline-block; }
+        .skill-tag { font-family: 'DM Mono', monospace; font-size: 11px; border: 1px solid #222; padding: 6px 14px; border-radius: 2px; color: #C2C2C2; transition: border-color 0.2s, color 0.2s; display: inline-block; }
         .skill-tag:hover { border-color: #D4A843; color: #D4A843; }
 
-        .project-card { border: 1px solid #1A1A1A; padding: 36px; border-radius: 4px; transition: border-color 0.3s, transform 0.3s; cursor: default; background: #0E0E0E; }
         .project-card:hover { border-color: #D4A843; transform: translateY(-3px); }
 
         .gold { color: #D4A843; }
         .mono { font-family: 'DM Mono', monospace; }
 
         .hero-name { font-size: clamp(52px, 9vw, 120px); line-height: 0.9; letter-spacing: -0.02em; }
-        .hero-sub { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em; color: #555; }
+        .hero-sub { font-family: 'DM Mono', monospace; font-size: 12px; letter-spacing: 0.15em; color: #C2C2C2; }
 
-        .contact-btn { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #333; padding: 14px 28px; background: transparent; color: #999; cursor: pointer; transition: all 0.25s; border-radius: 2px; }
+        .contact-btn { font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid #333; padding: 14px 28px; background: transparent; color: #C2C2C2; cursor: pointer; transition: all 0.25s; border-radius: 2px; }
         .contact-btn:hover { border-color: #D4A843; color: #D4A843; }
         .contact-btn.primary { border-color: #D4A843; color: #D4A843; }
         .contact-btn.primary:hover { background: #D4A843; color: #0C0C0C; }
@@ -163,11 +162,41 @@ export default function Portfolio() {
         .divider { width: 100%; height: 1px; background: #1A1A1A; }
         .dot { width: 5px; height: 5px; border-radius: 50%; background: #D4A843; display: inline-block; margin-right: 8px; }
 
-        .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #444; }
+        .section-label { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #C2C2C2; }
         .section-number { font-family: 'DM Mono', monospace; font-size: 11px; color: #D4A843; }
 
-        .stack-pill { font-family: 'DM Mono', monospace; font-size: 10px; letter-spacing: 0.06em; background: #161616; border: 1px solid #222; padding: 3px 10px; border-radius: 2px; color: #555; }
+        /* Update .project-card to fill full height and push bottom content down */
+.project-card { 
+  border: 1px solid #1A1A1A; 
+  padding: 36px; 
+  border-radius: 4px; 
+  transition: border-color 0.3s, transform 0.3s; 
+  cursor: default; 
+  background: #0E0E0E; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: space-between; 
+  height: 100%; 
+}
 
+/* Ensure FadeIn wrapper stretches to equalize card heights in grid */
+.grid-2 > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Stack pill styling */
+.stack-pill { 
+  font-family: 'DM Mono', monospace; 
+  font-size: 10px; 
+  letter-spacing: 0.06em; 
+  background: #161616; 
+  border: 1px solid #222; 
+  padding: 3px 10px; 
+  border-radius: 2px; 
+  color: #C2C2C2; 
+  white-space: nowrap; /* Prevents text inside pills from breaking */
+}
         .main-body {
           background: #0C0C0C;
           color: #E8E2D9;
@@ -206,9 +235,9 @@ export default function Portfolio() {
         </div>
         {/* Mobile hamburger */}
         <button onClick={() => setMenuOpen(!menuOpen)} style={{ display: "none", background: "none", border: "none", cursor: "pointer", padding: 4 }} className="mobile-menu-btn">
-          <div style={{ width: 22, height: 1, background: "#888", marginBottom: 6, transition: "all 0.2s", transform: menuOpen ? "rotate(45deg) translate(5px, 4px)" : "none" }} />
-          <div style={{ width: 22, height: 1, background: "#888", transition: "all 0.2s", opacity: menuOpen ? 0 : 1 }} />
-          <div style={{ width: 22, height: 1, background: "#888", marginTop: 6, transition: "all 0.2s", transform: menuOpen ? "rotate(-45deg) translate(5px, -4px)" : "none" }} />
+          <div style={{ width: 22, height: 1, background: "#C2C2C2", marginBottom: 6, transition: "all 0.2s", transform: menuOpen ? "rotate(45deg) translate(5px, 4px)" : "none" }} />
+          <div style={{ width: 22, height: 1, background: "#C2C2C2", transition: "all 0.2s", opacity: menuOpen ? 0 : 1 }} />
+          <div style={{ width: 22, height: 1, background: "#C2C2C2", marginTop: 6, transition: "all 0.2s", transform: menuOpen ? "rotate(-45deg) translate(5px, -4px)" : "none" }} />
         </button>
       </nav>
 
@@ -236,7 +265,7 @@ export default function Portfolio() {
         <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
           <FadeIn delay={0.1}>
             <p className="hero-sub" style={{ marginBottom: 24 }}>
-              ◈ &nbsp; Computer Science Sophomore &nbsp;·&nbsp; Mithibai College, Mumbai &nbsp;·&nbsp; SGPA 9.45
+              ◈ &nbsp; Computer Science Sophomore &nbsp;·&nbsp; Mithibai College, Mumbai &nbsp;·&nbsp; CGPA 9.0
             </p>
           </FadeIn>
           <FadeIn delay={0.25}>
@@ -249,7 +278,7 @@ export default function Portfolio() {
           <FadeIn delay={0.45}>
             <div style={{ marginTop: 48, maxWidth: 540 }}>
               <div className="divider" style={{ marginBottom: 28 }} />
-              <p className="mono" style={{ fontSize: 13, lineHeight: 1.8, color: "#666" }}>
+              <p className="mono" style={{ fontSize: 13, lineHeight: 1.8, color: "#C2C2C2" }}>
                 I build full-stack applications and data-driven systems end-to-end —
                 from UI to backend to deployment. Currently exploring the intersection of
                 software engineering and machine learning.
@@ -266,7 +295,7 @@ export default function Portfolio() {
 
         {/* Scroll indicator */}
         <div style={{ position: "absolute", bottom: 40, right: 40, display: "flex", flexDirection: "column", alignItems: "center", gap: 8 }}>
-          <span className="mono" style={{ fontSize: 9, color: "#333", letterSpacing: "0.15em", writingMode: "vertical-rl" }}>SCROLL</span>
+          <span className="mono" style={{ fontSize: 9, color: "#C2C2C2", letterSpacing: "0.15em", writingMode: "vertical-rl" }}>SCROLL</span>
           <div style={{ width: 1, height: 40, background: "linear-gradient(to bottom, #333, transparent)" }} />
         </div>
       </section>
@@ -309,29 +338,38 @@ export default function Portfolio() {
           </div>
         </FadeIn>
 
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))", gap: 20 }} className="grid-2">
+        <div style={{ display: "grid", gridTemplateColumns: "auto auto", gap: 20 }} className="grid-2">
           {PROJECTS.map((p, i) => (
             <FadeIn key={p.name} delay={i * 0.1}>
               <div className="project-card">
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
-                  <h3 style={{ fontSize: 22, fontWeight: 400, letterSpacing: "-0.01em" }}>{p.name}</h3>
-                  <span className="mono" style={{ fontSize: 9, color: "#444", letterSpacing: "0.12em", textTransform: "uppercase", paddingTop: 4 }}>{p.tag}</span>
+
+                {/* Top Half: Header & Description */}
+                <div>
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 24 }}>
+                    <h3 style={{ fontSize: 22, fontWeight: 400, letterSpacing: "-0.01em" }}>{p.name}</h3>
+                    <span className="mono" style={{ fontSize: 9, color: "#C2C2C2", letterSpacing: "0.12em", textTransform: "uppercase" }}>{p.tag}</span>
+                  </div>
+                  <p className="mono" style={{ fontSize: 12, lineHeight: 1.85, color: "#C2C2C2", marginBottom: 28 }}>{p.desc}</p>
                 </div>
-                <p className="mono" style={{ fontSize: 12, lineHeight: 1.85, color: "#555", marginBottom: 28 }}>{p.desc}</p>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end" }}>
-                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+
+                {/* Bottom Half: Stack Pills + Action Links */}
+                <div style={{ marginTop: "auto", paddingTop: 16 }}>
+                  {/* Tech Stack Wrapper */}
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6, marginBottom: 20 }}>
                     {p.stack.map((s) => <span key={s} className="stack-pill">{s}</span>)}
                   </div>
-                  <div style={{ display: "flex", gap: 12, marginLeft: 16, flexShrink: 0 }}>
+
+                  {/* Links Wrapper */}
+                  <div style={{ display: "flex", gap: 12, alignItems: "center" }}>
                     {p.repo && (
-                      <a href={p.repo} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "#444", letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.2s" }}
-                        onMouseEnter={e => e.target.style.color = "#D4A843"} onMouseLeave={e => e.target.style.color = "#444"}>
+                      <a href={p.repo} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "#C2C2C2", letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.2s" }}
+                        onMouseEnter={e => e.target.style.color = "#D4A843"} onMouseLeave={e => e.target.style.color = "#C2C2C2"}>
                         Repo ↗
                       </a>
                     )}
                     {p.repos && p.repos.map((r) => (
-                      <a key={r.label} href={r.href} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "#444", letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.2s" }}
-                        onMouseEnter={e => e.target.style.color = "#D4A843"} onMouseLeave={e => e.target.style.color = "#444"}>
+                      <a key={r.label} href={r.href} target="_blank" rel="noreferrer" className="mono" style={{ fontSize: 10, color: "#C2C2C2", letterSpacing: "0.1em", textTransform: "uppercase", textDecoration: "none", transition: "color 0.2s" }}
+                        onMouseEnter={e => e.target.style.color = "#D4A843"} onMouseLeave={e => e.target.style.color = "#C2C2C2"}>
                         {r.label} ↗
                       </a>
                     ))}
@@ -343,6 +381,7 @@ export default function Portfolio() {
                     )}
                   </div>
                 </div>
+
               </div>
             </FadeIn>
           ))}
@@ -367,7 +406,7 @@ export default function Portfolio() {
               <h2 style={{ fontSize: "clamp(36px, 5vw, 60px)", lineHeight: 1.05, letterSpacing: "-0.02em", marginBottom: 24 }}>
                 Let's build<br /><span style={{ fontStyle: "italic", color: "#D4A843" }}>something</span><br />together.
               </h2>
-              <p className="mono" style={{ fontSize: 12, color: "#555", lineHeight: 1.8, maxWidth: 340 }}>
+              <p className="mono" style={{ fontSize: 12, color: "#C2C2C2", lineHeight: 1.8, maxWidth: 340 }}>
                 Open to internships, collaborations, and interesting problems. If you have one, reach out.
               </p>
             </div>
@@ -381,8 +420,8 @@ export default function Portfolio() {
               ].map((item) => (
                 <div key={item.label} style={{ border: "1px solid #1A1A1A", padding: "20px 24px", borderRadius: 4, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                   <div>
-                    <p className="mono" style={{ fontSize: 9, color: "#444", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 6 }}>{item.label}</p>
-                    <p className="mono" style={{ fontSize: 13, color: "#999" }}>{item.value}</p>
+                    <p className="mono" style={{ fontSize: 9, color: "#C2C2C2", letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 6 }}>{item.label}</p>
+                    <p className="mono" style={{ fontSize: 13, color: "#C2C2C2" }}>{item.value}</p>
                   </div>
                   {item.action && (
                     <button className="contact-btn" style={{ padding: "8px 16px", fontSize: 10 }} onClick={item.action}>
@@ -409,8 +448,8 @@ export default function Portfolio() {
 
       {/* FOOTER */}
       <div style={{ borderTop: "1px solid #1A1A1A", padding: "24px 40px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-        <span className="mono" style={{ fontSize: 10, color: "#333" }}>Mohammed Farhan Shaikh</span>
-        <span className="mono" style={{ fontSize: 10, color: "#333" }}>Mumbai, IN</span>
+        <span className="mono" style={{ fontSize: 10, color: "#C2C2C2" }}>Mohammed Farhan Shaikh</span>
+        <span className="mono" style={{ fontSize: 10, color: "#C2C2C2" }}>Mumbai, IN</span>
       </div>
     </div>
   );
