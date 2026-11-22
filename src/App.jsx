@@ -1,16 +1,78 @@
 import { useState, useEffect, useRef } from "react";
 
-const NAV_LINKS = ["About", "Skills", "Projects", "Contact"];
+const NAV_LINKS = ["About", "Experience", "Skills", "Projects", "Contact"];
 
 const SKILLS = {
-  "Frontend": ["ReactJS", "Next.js", "Flutter", "HTML5", "CSS3"],
+  "Languages": ["JavaScript", "TypeScript", "Python", "Java", "C", "C++", "C#", "Dart", "SQL"],
+  "Frontend": ["ReactJS", "Next.js", "Tailwind CSS", "Flutter", "HTML5", "CSS3"],
   "Backend": ["Node.js", "Express.js", "REST APIs"],
-  "Data & ML": ["Python", "Pandas", "NumPy", "Scikit-learn", "EDA"],
-  "Databases": ["MongoDB", "Firebase", "SQLite", "SQL"],
-  "Tools": ["Git", "GitHub", "Postman", "JWT", "Bcrypt", "Resend"],
+  "3D & WebXR": ["Three.js", "React Three Fiber", "WebGL", "Blender", "GLTF/GLB", "DRACO", "KTX2", "Zustand"],
+  "Data & ML": ["Python", "Pandas", "NumPy", "Scikit-learn", "EDA", "KNN", "K-Means", "DBSCAN", "Gemini API"],
+  "Databases": ["MongoDB", "Mongoose", "Firebase", "SQLite", "SQL"],
+  "Auth & Security": ["JWT", "RBAC", "TOTP", "Bcrypt", "Google OAuth2", "CORS"],
+  "Tools": ["Git", "GitHub", "Postman", "Vercel", "Netlify", "Resend", "Brevo", "ZeptoMail"],
 };
 
+const EXPERIENCE = [
+  {
+    org: "Metavian Technologies Pvt Ltd",
+    place: "AR/VR & Spatial Computing · Andheri West, Mumbai",
+    roles: [
+      {
+        title: "Junior WebXR Developer",
+        period: "Nov 2026 – Present",
+        bullets: [
+          "Continuing on the WebXR team after the internship.",
+        ],
+      },
+      {
+        title: "WebXR Developer Intern",
+        period: "Aug 2026 – Sep 2026",
+        bullets: [
+          "Built six client-facing interactive 3D web apps with React Three Fiber, Three.js, and Blender, including a Holobox product showcase, an automotive car configurator, and a 360° facility walkthrough.",
+          "Worked on a medical visualization app for cerebral aneurysm coiling — diagnosed a depth-buffer occlusion issue that was hiding the catheter mesh.",
+          "Developed a catheter device showcase with SplineIK Blender armature animations exported to GLB.",
+          "Built a multi-variant 3D product catalog with dynamic asset loading and Zustand for state, and improved load times with DRACO and KTX2 compression.",
+        ],
+      },
+    ],
+    stack: ["React Three Fiber", "Three.js", "Blender", "Zustand", "DRACO", "KTX2"],
+  },
+  {
+    org: "Mithibai Cultural Committee",
+    place: "College festival platforms",
+    roles: [
+      {
+        title: "MCC Website Developer",
+        period: "Jun 2026 – Mar 2027 (expected)",
+        bullets: [
+          "Core developer on the Annual Talent Search platform — migrated its live database from Firebase to MongoDB with zero data loss, using custom TypeScript scripts to fix schema inconsistencies.",
+          "Built JWT auth with role-based access control to protect committee data and event workflows, and integrated ZeptoMail for transactional email.",
+          "Part of an eight-developer team building the Kshitijj festival web portal with Next.js, JWT, and MongoDB.",
+        ],
+      },
+    ],
+    stack: ["Next.js", "TypeScript", "MongoDB", "Mongoose", "JWT", "ZeptoMail"],
+  },
+];
+
 const PROJECTS = [
+  {
+    name: "CoCre8 (Collegium)",
+    tag: "Group Project · Live",
+    stack: ["Next.js", "Node.js", "Express.js", "MongoDB", "Flutter", "TOTP", "JWT", "Brevo"],
+    desc: "College club management platform with five roles and invite-chain onboarding. Attendance runs on TOTP-based rotating QR codes that refresh every three seconds to cut down screenshot-based fraud. Web dashboard plus a companion Flutter app.",
+    accent: "#D4A843",
+    live: "https://cocre8.vercel.app",
+  },
+  {
+    name: "ATS — Annual Talent Search",
+    tag: "Group Project · Live",
+    stack: ["Next.js", "TypeScript", "MongoDB", "Firebase", "JWT", "ZeptoMail"],
+    desc: "Event platform for Mithibai's Cultural Committee. Migrated the database from Firebase to MongoDB with zero data loss, and built a manual JWT auth system with strict role-based access control.",
+    accent: "#D4A843",
+    live: "https://ats.mithibaicultural.in",
+  },
   {
     name: "BreakBite",
     tag: "Full-Stack · Live",
@@ -19,18 +81,6 @@ const PROJECTS = [
     accent: "#D4A843",
     repo: "https://github.com/Farhan-Shaikh-25/BreakBite",
     live: "https://breakbite-c33c3.web.app",
-  },
-  {
-    name: "KeepTask",
-    tag: "Full-Stack · Live",
-    stack: ["React", "Node.js", "JWT", "MongoDB"],
-    desc: "Secure task management app with access/refresh token auth strategy, bcrypt hashing, and full CRUD. Deployed on Netlify.",
-    accent: "#D4A843",
-    repos: [
-      { label: "Frontend", href: "https://github.com/Farhan-Shaikh-25/TodoFrontend" },
-      { label: "Backend", href: "https://github.com/Farhan-Shaikh-25/TodoBackend" },
-    ],
-    live: "https://keeptask.netlify.app",
   },
   {
     name: "Teacher Audit",
@@ -43,6 +93,18 @@ const PROJECTS = [
       { label: "Landing", href: "https://github.com/Farhan-Shaikh-25/TeacherAuditLandingPage" },
     ],
     live: "https://teacher-audit.vercel.app",
+  },
+  {
+    name: "KeepTask",
+    tag: "Full-Stack · Live",
+    stack: ["React", "Node.js", "JWT", "MongoDB"],
+    desc: "Secure task management app with access/refresh token auth strategy, bcrypt hashing, and full CRUD. Deployed on Netlify.",
+    accent: "#D4A843",
+    repos: [
+      { label: "Frontend", href: "https://github.com/Farhan-Shaikh-25/TodoFrontend" },
+      { label: "Backend", href: "https://github.com/Farhan-Shaikh-25/TodoBackend" },
+    ],
+    live: "https://keeptask.netlify.app",
   },
   {
     name: "Zaid Tailoring",
@@ -265,7 +327,7 @@ export default function Portfolio() {
         <div style={{ maxWidth: 1100, margin: "0 auto", width: "100%" }}>
           <FadeIn delay={0.1}>
             <p className="hero-sub" style={{ marginBottom: 24 }}>
-              ◈ &nbsp; Computer Science Sophomore &nbsp;·&nbsp; Mithibai College, Mumbai &nbsp;·&nbsp; CGPA 9.0
+              ◈ &nbsp; Junior WebXR Developer @ Metavian &nbsp;·&nbsp; CS Student, Mithibai College &nbsp;·&nbsp; CGPA 9.0
             </p>
           </FadeIn>
           <FadeIn delay={0.25}>
@@ -276,12 +338,13 @@ export default function Portfolio() {
             </h1>
           </FadeIn>
           <FadeIn delay={0.45}>
-            <div style={{ marginTop: 48, maxWidth: 540 }}>
+            <div style={{ marginTop: 48, maxWidth: 580 }}>
               <div className="divider" style={{ marginBottom: 28 }} />
               <p className="mono" style={{ fontSize: 13, lineHeight: 1.8, color: "#C2C2C2" }}>
-                I build full-stack applications and data-driven systems end-to-end —
-                from UI to backend to deployment. Currently exploring the intersection of
-                software engineering and machine learning.
+                I build full-stack applications and interactive 3D web experiences
+                end-to-end — from UI to backend to deployment. Currently working as a
+                Junior WebXR Developer, and exploring the intersection of software
+                engineering and machine learning.
               </p>
             </div>
           </FadeIn>
@@ -302,11 +365,58 @@ export default function Portfolio() {
 
       <div className="divider" style={{ margin: "0 40px" }} />
 
+      {/* ─── EXPERIENCE ─── */}
+      <section id="experience" data-section="Experience" style={{ padding: "120px 40px", maxWidth: 1100, margin: "0 auto" }}>
+        <FadeIn>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 72 }}>
+            <span className="section-number">02</span>
+            <span className="section-label">Experience</span>
+            <div style={{ flex: 1, height: 1, background: "#1A1A1A", marginLeft: 12 }} />
+          </div>
+        </FadeIn>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {EXPERIENCE.map((e, i) => (
+            <FadeIn key={e.org} delay={i * 0.1}>
+              <div className="project-card" style={{ height: "auto" }}>
+                <div style={{ marginBottom: 28 }}>
+                  <h3 style={{ fontSize: 22, fontWeight: 400, letterSpacing: "-0.01em", marginBottom: 6 }}>{e.org}</h3>
+                  <span className="mono" style={{ fontSize: 9, color: "#C2C2C2", letterSpacing: "0.12em", textTransform: "uppercase" }}>{e.place}</span>
+                </div>
+
+                {e.roles.map((r) => (
+                  <div key={r.title} style={{ marginBottom: 24 }}>
+                    <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
+                      <span className="mono gold" style={{ fontSize: 11, letterSpacing: "0.08em", textTransform: "uppercase" }}>{r.title}</span>
+                      <span className="mono" style={{ fontSize: 10, color: "#C2C2C2", letterSpacing: "0.1em" }}>{r.period}</span>
+                    </div>
+                    <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 10 }}>
+                      {r.bullets.map((b) => (
+                        <li key={b} className="mono" style={{ fontSize: 12, lineHeight: 1.85, color: "#C2C2C2", paddingLeft: 18, position: "relative" }}>
+                          <span style={{ position: "absolute", left: 0, color: "#D4A843" }}>›</span>
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 6, paddingTop: 4 }}>
+                  {e.stack.map((s) => <span key={s} className="stack-pill">{s}</span>)}
+                </div>
+              </div>
+            </FadeIn>
+          ))}
+        </div>
+      </section>
+
+      <div className="divider" style={{ margin: "0 40px" }} />
+
       {/* ─── SKILLS ─── */}
       <section id="skills" data-section="Skills" style={{ padding: "120px 40px", maxWidth: 1100, margin: "0 auto" }}>
         <FadeIn>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 72 }}>
-            <span className="section-number">02</span>
+            <span className="section-number">03</span>
             <span className="section-label">Skills</span>
             <div style={{ flex: 1, height: 1, background: "#1A1A1A", marginLeft: 12 }} />
           </div>
@@ -332,7 +442,7 @@ export default function Portfolio() {
       <section id="projects" data-section="Projects" style={{ padding: "120px 40px", maxWidth: 1100, margin: "0 auto" }}>
         <FadeIn>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 72 }}>
-            <span className="section-number">03</span>
+            <span className="section-number">04</span>
             <span className="section-label">Projects</span>
             <div style={{ flex: 1, height: 1, background: "#1A1A1A", marginLeft: 12 }} />
           </div>
@@ -394,7 +504,7 @@ export default function Portfolio() {
       <section id="contact" data-section="Contact" style={{ padding: "120px 40px 160px", maxWidth: 1100, margin: "0 auto" }}>
         <FadeIn>
           <div style={{ display: "flex", alignItems: "baseline", gap: 16, marginBottom: 80 }}>
-            <span className="section-number">04</span>
+            <span className="section-number">05</span>
             <span className="section-label">Contact</span>
             <div style={{ flex: 1, height: 1, background: "#1A1A1A", marginLeft: 12 }} />
           </div>
@@ -436,7 +546,7 @@ export default function Portfolio() {
                   { label: "LinkedIn", href: "https://www.linkedin.com/in/mohammed-farhan-shaikh25" },
                   { label: "GitHub", href: "https://github.com/Farhan-Shaikh-25" },
                 ].map((link) => (
-                  <a key={link.label} href={link.href} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
+                  <a key={link.label} href={link.href} target="_blank" rel="noreferrer" •7style={{ textDecoration: "none" }}>
                     <button className="contact-btn" style={{ width: "100%" }}>{link.label}</button>
                   </a>
                 ))}
