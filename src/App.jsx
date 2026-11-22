@@ -546,7 +546,7 @@ export default function Portfolio() {
                   { label: "LinkedIn", href: "https://www.linkedin.com/in/mohammed-farhan-shaikh25" },
                   { label: "GitHub", href: "https://github.com/Farhan-Shaikh-25" },
                 ].map((link) => (
-                  <a key={link.label} href={link.href} target="_blank" rel="noreferrer" •7style={{ textDecoration: "none" }}>
+                  <a key={link.label} href={link.href} target="_blank" rel="noreferrer" style={{ textDecoration: "none" }}>
                     <button className="contact-btn" style={{ width: "100%" }}>{link.label}</button>
                   </a>
                 ))}
